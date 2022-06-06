@@ -1,14 +1,14 @@
 const path= require('path');
 const {
-  absolute_Path,
+  absolutePath,
   existRoute,
-  is_Directory,
-  is_File,
-  extname_Md,
-  join_Routes ,
-  md_Route,
-  read_Directory,
-  readFile
+  isDirectory,
+  isFile,
+  extnameMd,
+  joinRoutes ,
+  mdRoute,
+  readDirectory,
+  readFile,
   }
 = require('../src/index.js');
 
@@ -29,54 +29,51 @@ describe('existeRoute', () => {
 });
 describe('absolutePath', () => {
   it('debe retornar una ruta absoluta', () => {
-    expect(absolute_Path('./README.md')).toBe(route);
+    expect(absolutePath('./README.md')).toBe(route);
   });
 });
 
 describe('isDirectory', () => {
-    it('Verifica si es un directorio', () => {
-        expect(is_Directory(routedirectory)).toBe(true);
-    });
- });
-
-describe('isDirec', () => {
     it('retorna true si la ruta es un directorio', () => {
-      expect(is_Directory(routeDirectory)).toBe(true);
+      expect(isDirectory(routeDirectory)).toBe(true);
     });
     it('retorna false si la ruta no es un directorio', () => {
-      expect(is_Directory(route)).toBe(false);
+      expect(isDirectory(route)).toBe(false);
     });
   });
   describe('isFile', () => {
     it('retorna true si la ruta es un file', () => {
-      expect(is_File('README.md')).toBe(true);
+      expect(isFile('README.md')).toBe(true);
     });
     it('retorna false si la ruta no es un file', () => {
-      expect(is_File(routeDirectory)).toBe(false);
+      expect(isFile(routeDirectory)).toBe(false);
     });
   });
-  describe('extname_Md', () => {
+  describe('extnameMd', () => {
     it('debe retornar true si la extensión es .md', () => {
-      expect(extname_Md(route)).toBe('.md');
+      expect(extnameMd(route)).toBe('.md');
     });
   });
-  describe('join_Routes', () => {
+  describe('joinRoutes', () => {
     it('Une dos rutas para retornar una lista de archivos en un array con join_Routes ', () => {
-        expect(join_Routes ('C:\\Users\\Arel\\Documents\\GitHub\\LIM017-md-links\\prueba')).toEqual(manyFiles);
+        expect(joinRoutes ('C:\\Users\\Arel\\Documents\\GitHub\\LIM017-md-links\\prueba')).toEqual(manyFiles);
     });
 }); 
-describe('md_Route', () => {
+describe('mdRoute', () => {
   it('Valida directorio, lista los archivos que encuentre y hace la búsqueda de archivos con md_Rout', () => {
-      expect(md_Route('C:\\Users\\Arel\\Documents\\GitHub\\LIM017-md-links\\prueba')).toEqual(manyFiles);
+      expect(mdRoute('C:\\Users\\Arel\\Documents\\GitHub\\LIM017-md-links\\prueba')).toEqual(manyFiles);
   });
 });
-describe('read_Directory', () => {
-  it('Lee directorio en routeFolder', () => {
-      expect(read_Directory(routedirectory)).toEqual(files);
+describe('readDirectory', () => {
+  it('Lee directorio en routedirectory', () => {
+      expect(readDirectory(routedirectory)).toEqual(files);
   });
 });
-describe('read_file', () => {
-  it('Lee directorio en routeFolder', () => {
+describe('readfile', () => {
+  it('Lee directorio en readFile', () => {
       expect(readFile(routeFile)).toEqual('hola');
   });
+});
+it('Retorna false al no encontrar archivos MD', () => {
+  expect(mdRoute('C:\\Users\\Arel\\Documents\\GitHub\\LIM017-md-links\\src\\index.js')).toBe(false);
 });
