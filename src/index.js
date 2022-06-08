@@ -44,8 +44,8 @@ const mdRoute= (route) => {
 // *  Función para extraer los links de un archivo .md, devuelve array de objetos
 const getLinks = (route) => {
     const renderer = new marked.Renderer();
-    console.log(renderer)
     let theLinks= [];
+    
     mdRoute(route).forEach((file)=> {
      const md= readFile(file);
      renderer.link = (href,title,text) => {
@@ -55,14 +55,39 @@ const getLinks = (route) => {
           file: file, //Ruta del archivo donde se encontró el link.
         }
         theLinks.push(linksResult)
+        
       }
       marked.use({ renderer });
       marked.parse(md);
     });
+    
     return theLinks
   }
+  //obtener los status de los links
+const getLinksStatus = (arrLinks) => {
+  const statusOfLinks = arrLinks.map((element) => 
+   fetch(element)
+   .then((res)=>{
+        element.status = res.status,
+        element.message= (res.status >= 200) && (res.status <= 399) ? 'ok' :'fail';
+        return element;
+      })
+   .catch((error) => {
+          return {
+          href: element.href,
+          text: element.text,
+          file: element.file,
+          status: 'Not found'+ error,
+          message: 'fail'
+     }      
+    })
+  )
+ return Promise.all(statusOfLinks);
+}
 
-console.log(getLinks('C:\\Users\\Arel\\Documents\\GitHub\\LIM017-md-links\\prueba\\prueba2.md'))
+
+/*const statusLink =(getLinksStatus(getLinks('C:\\Users\\Arel\\Documents\\GitHub\\LIM017-md-links\\prueba\\prueba2.md')))
+statusLink.then( res => console.log(res)).catch( error => console.log(error));*/
 module.exports = {
     existRoute,
     absolutePath,
@@ -73,6 +98,8 @@ module.exports = {
     joinRoutes,
     mdRoute,
     readFile,
+    getLinks,
+    getLinksStatus,
     };
 
 
