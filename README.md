@@ -9,7 +9,10 @@ Instale la libreria ingresando:
 
 ##### Modo de uso
 * Podrá ingresar dos opciones: *--validate*, *--stats*  y/o *--validate --stat* o ninguna de ellas
-* Para ejecutarlo en el terminal: md-links <path> [options] 
+* Para ejecutarlo en el terminal: 
+```sh 
+md-links <path> [options] 
+```
 * ejemplo:
 ```sh
 *md-links prueba/prueba2.md --validate*
