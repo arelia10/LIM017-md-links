@@ -1,5 +1,5 @@
 # Markdown Links
-![md-links](https://ibb.co/16fkjTM)
+![md-links]
 Mdlinks-Claudia es una librería creada a través de [Node.js](https://nodejs.org/), que lee y analiza archivos
 en formato `Markdown`, para verificar los links que contiene y reportar algunas estadísticas, como el total y los links rotos.
 
