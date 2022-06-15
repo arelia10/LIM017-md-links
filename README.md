@@ -1,5 +1,4 @@
 # Markdown Links
-![md-links]
 mdlinks-areli10 es una librería creada a través de [Node.js](https://nodejs.org/), que lee y analiza archivos
 en formato `Markdown`, para verificar los links que contiene y reportar algunas estadísticas, como el total y los links rotos.
 
