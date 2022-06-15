@@ -1,11 +1,15 @@
 {
-  "name": "mdlinks",
+  "name": "mdlinks-areli10",
   "version": "1.0.0",
   "description": "Md-Links te ayudará a verificar si los links que estén en los archivos .md sirven o ya están invalidados.",
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage"
   },
+  "bin": {
+    "md-links": "./src/cli.js"
+  },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/arelia10/LIM017-md-links.git"
@@ -23,6 +27,8 @@
   },
   "homepage": "https://github.com/arelia10/LIM017-md-links#readme",
   "dependencies": {
+    "args": "^5.0.3",
+    "colors": "^1.4.0",
     "jest": "^28.1.1",
     "marked": "^4.0.16",
     "node-fetch": "^2.6.7"
