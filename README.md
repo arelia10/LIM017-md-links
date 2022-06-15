@@ -1,7 +1,7 @@
 # Markdown Links
-![md-links](C:\Users\Arel\Documents\GitHub\LIM017-md-links\cooltext413221125965036.png)
-
-**MdLinks** permite  validar las URLs de los *archivos .md*
+![md-links](https://ibb.co/16fkjTM)
+Mdlinks-Claudia es una librería creada a través de [Node.js](https://nodejs.org/), que lee y analiza archivos
+en formato `Markdown`, para verificar los links que contiene y reportar algunas estadísticas, como el total y los links rotos.
 
 ## Instrucciones de uso
 Instale la libreria ingresando:
@@ -9,5 +9,51 @@ Instale la libreria ingresando:
 `npm i mdlinks-areli10`
 
 ##### Modo de uso
-- Podrá ingresar dos opciones: *--validate*, *--stats*  y/o *--validate --stat* o ninguna de ellas
-- Ingresar siempre el path (ruta del archivo/carpeta)  
+- Podrá ingresar dos opciones: 
+*--validate*, *--stats*  y/o *--validate --stat* o ninguna de ellas
+-Para ejecutarlo en el terminal:
+ md-links <path> [options] 
+ejemplo:
+*md-links prueba/prueba2.md --validate*
+href: https://www.linkedin.com/feed/
+text: https://www.linkedin.com/feed/                                 d
+file: C:\Users\Arel\Documents\GitHub\LIM017-md-links\prueba\prueba2.mprueba\prueba2.md
+status: 200
+message: ok  
+
+*md-links prueba4.md --stats* 
+ md-links prueba4.md --stats
+Total: 1 Unique: 1
+
+*md-links prueba4.md --validate --stats*
+ md-links prueba4.md --validate --stats
+Total: 1 
+    Unique: 1
+    Broken: 1
+*md-Links md-Links prueb/prueba1.md --help*
+`
+────────────────────────────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────                                                        ────
+─────────────▄▀▄─────▄▀▄────────────────────            ¿ＮＥＣＥＳＩＴＡＳ  ＡＹＵＤＡ？
+────────────▄█░░▀▀▀▀▀░░█▄───────────────────                                                        ────
+────────▄▄──█░░░░░░░░░░░█──▄▄───────────────     --validate : Obtienes el href, title, status y     ────
+───────█▄▄█─█░░▀░░┬░░▀░░█─█▄▄█──────────────                  message de cada link.                 ────
+███████╗██████╗ ██████╗  █████╗ ██████╗─────        --stats : Obtienes como resultado               ────
+██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗────                  Total (total de links) y              ────
+█████╗  ██████╔╝██████╔╝██║  ██║██████╔╝────                  Unique (total de links únicos).       ────
+██╔══╝  ██╔══██╗██╔══██╗██║  ██║██╔══██╗────                                                        ────
+███████╗██║  ██║██║  ██║╚█████╔╝██║  ██║────     --validate --stats : Obtienes como resultado       ────
+╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚════╝ ╚═╝  ╚═╝────                          Total, Unique y Broken        ────
+────────────────────────────────────────────                          (total de links fail).        ────
+────────────────────────────────────────────                                                        ────
+────────────────────────────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────────────────────────────────────`
+## 4. Herramientas usadas
+* [File System](https://nodejs.org/dist/latest-v17.x/docs/api/fs.html#file-system)
+* [Path module](https://nodejs.org/dist/latest-v17.x/docs/api/path.html)
+* [Node-fetch](https://nodejs.org/dist/latest-v17.x/docs/api/fs.html#file-system)
+* [Marked](https://www.npmjs.com/package/marked)
+
+## 5. Autor
+* [Areli Ceopa- Laboratoria LIM 017](https://github.com/arelia10)
