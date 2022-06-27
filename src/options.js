@@ -1,42 +1,20 @@
-# Markdown Links
-mdlinks-areli10 es una librería creada a través de [Node.js](https://nodejs.org/), que lee y analiza archivos
-en formato `Markdown`, para verificar los links que contiene y reportar algunas estadísticas, como el total y los links rotos.
+//Obtener el total de links
+const totalLinks = (arrayLinks) => arrayLinks.map((el) => el.href).length;
 
-## Instrucciones de uso
-Instale la libreria ingresando:
+//Obtener los links únicos dentro de la lista del array que fueron encontrados en el path
+const uniqueLinks = (arrayLinks) => {
+    const linksSet = new Set ([]);// almacena valores únicos irrepetibles
+    arrayLinks.forEach((element) => linksSet.add(element.href));
+    return linksSet.size
+};
+//Obtener los links rotos dentro de la lista del array que fueron encontrados en el path
+const brokenLinks = (arrayLinks) => {
+    const broken = arrayLinks.filter((e)=> e.message=== 'fail');
+    return broken.length;
+};
 
-`npm i mdlinks-areli10`
 
-##### Modo de uso
-* Podrá ingresar dos opciones: *--validate*, *--stats*  y/o *--validate --stat* o ninguna de ellas
-* Para ejecutarlo en el terminal: 
-```sh 
-md-links <path> [options] 
-```
-* ejemplo:
-```sh
-*md-links prueba/prueba2.md --validate*
-href: https://www.linkedin.com/feed/
-text: https://www.linkedin.com/feed/                                 d
-file: C:\Users\Arel\Documents\GitHub\LIM017-md-links\prueba\prueba2.mprueba\prueba2.md
-status: 200
-message: ok  
-```
-```sh
-md-links prueba4.md --stats* 
- md-links prueba4.md --stats
-Total: 1 Unique: 1
-```
-```sh
-md-links prueba4.md --validate --stats*
-md-links prueba4.md --validate --stats
-Total: 1 
-    Unique: 1
-    Broken: 1
- ```
-```sh
-md-Links prueb/prueba1.md --help
-`
+const help= `
 ────────────────────────────────────────────────────────────────────────────────────────────────────────
 ────────────────────────────────────────────────────────────────────────────────────────────────────────
 ────────────────────────────────────────────                                                        ────
@@ -54,13 +32,22 @@ md-Links prueb/prueba1.md --help
 ────────────────────────────────────────────                                                        ────
 ────────────────────────────────────────────────────────────────────────────────────────────────────────
 ────────────────────────────────────────────────────────────────────────────────────────────────────────`
-```
 
-## 4. Herramientas usadas
-* [File System](https://nodejs.org/dist/latest-v17.x/docs/api/fs.html#file-system)
-* [Path module](https://nodejs.org/dist/latest-v17.x/docs/api/path.html)
-* [Node-fetch](https://nodejs.org/dist/latest-v17.x/docs/api/fs.html#file-system)
-* [Marked](https://www.npmjs.com/package/marked)
+const about = `
 
-## 5. Autor
-* [Areli Ceopa- Laboratoria LIM 017](https://github.com/arelia10)
+
+            ███╗   ███╗██████╗     ██╗     ██╗███╗   ██╗██╗  ██╗███████╗
+            ████╗ ████║██╔══██╗    ██║     ██║████╗  ██║██║ ██╔╝██╔════╝
+            ██╔████╔██║██║  ██║    ██║     ██║██╔██╗ ██║█████╔╝ ███████╗
+            ██║╚██╔╝██║██║  ██║    ██║     ██║██║╚██╗██║██╔═██╗ ╚════██║
+            ██║ ╚═╝ ██║██████╔╝    ███████╗██║██║ ╚████║██║  ██╗███████║
+            ╚═╝     ╚═╝╚═════╝     ╚══════╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝
+            ____________________________________________________________
+
+            It is a command line interface (CLI) that helps the user to 
+            check if the Mark down (md) files contain links and if they 
+            work or not. Created by Juana LC, my repository:
+            https://github.com/arelia10/LIM017-md-links.git
+            ____________________________________________________________`
+
+module.exports = {totalLinks, uniqueLinks, brokenLinks, help, about};

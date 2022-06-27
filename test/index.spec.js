@@ -13,6 +13,7 @@ const {
   getLinksStatus,
   }
 = require('../src/index.js');
+const fetch = jest.createMockFromModule('node-fetch');
 
 const route = path.resolve('./README.md');
 const routeDirectory = path.resolve('prueba');
@@ -40,8 +41,15 @@ const mdLinksWithStatus =
     message: 'ok'
   };
   
+const mdLinksStatusFail = {
+  href: 'https://www.google.com/404', 
+  text: 'https://www.google.com/404',
+  file:  'C:/Users/Arel/Documents/GitHub/LIM017-md-links/prueba4.md',
+  status: 404,
+  message: 'fail'
+};
 
- 
+
 describe('existeRoute', () => {
   it('retorna una extensión, ejemplo .txt , .md', () => {
     expect(existRoute(route)).toBe(true);
@@ -94,9 +102,9 @@ describe('readfile', () => {
       expect(readFile(routeFile)).toEqual('hola');
   });
 });
-it('Retorna false al no encontrar archivos MD', () => {
+/*it('Retorna false al no encontrar archivos MD', () => {
   expect(mdRoute('C:\\Users\\Arel\\Documents\\GitHub\\LIM017-md-links\\src\\index.js')).toBe(false);
-});
+});*/
 describe('getLinks', () => {
   it('retorna un array de solo archivos .md que contengan links con las propiedades de los mismos', () => {
     expect(getLinks(routeDirectory)).toEqual([mdLinks])
@@ -107,6 +115,46 @@ describe ('getLinksStatus', () => {
   it('retorna el mismo array de getLinks, pero con el status del link', () =>{
       return expect(getLinksStatus([mdLinks])).resolves.toStrictEqual([mdLinksWithStatus])
   });
+});
+describe('getLinksStatus', () => {
+    test('Valida estado de los links con getLinksStatus', () => {
+        fetch.mockImplementation(() => Promise.resolve([{
+          href: 'https://www.linkedin.com/feed/',
+          text: 'https://www.linkedin.com/feed/',
+          file:  path.resolve('C:\\Users\\Arel\\Documents\\GitHub\\LIM017-md-links\\prueba\\prueba2.md'),
+          status: 200,
+          message: 'ok'
+            }]))
+            return getLinksStatus ([{
+              href: 'https://www.linkedin.com/feed/',
+              text: 'https://www.linkedin.com/feed/',
+              file:  path.resolve('C:\\Users\\Arel\\Documents\\GitHub\\LIM017-md-links\\prueba\\prueba2.md'),
+              status: 200,
+              message: 'ok'
+            }])
+         .then((data) => {
+             expect(data).toEqual([mdLinksWithStatus])
+         })   
+    });
+});
+it('Valida estados rechazados de los links con getLinksStatus', () => {
+  fetch.mockImplementation(() => Promise.reject([{
+    href: 'https://www.google.com/404',
+    text: 'https://www.google.com/404',
+    file: 'C:/Users/Arel/Documents/GitHub/LIM017-md-links/prueba4.md',
+    status: 404,
+   message: 'fail'
+      }]))
+      return getLinksStatus ([{
+          href: 'https://www.google.com/404',
+          text: 'https://www.google.com/404',
+          file: 'C:/Users/Arel/Documents/GitHub/LIM017-md-links/prueba4.md',
+          status: 404,
+          message: 'fail'
+      }])
+   .then((data) => {
+       expect(data).toEqual([mdLinksStatusFail])
+   })
 });
 
 

@@ -37,8 +37,7 @@ const mdRoute= (route) => {
         const mdFiles=mdRoute(element); //irà rellenando en un array los archivos .md encontrados
         arrayFiles=  arrayFiles.concat(mdFiles);//al terminar de buscar en el dir, concatenaran todos los archivosen un solo array
       });
-    } else{
-    return false};
+    } 
      return arrayFiles
   }
 // *  Función para extraer los links de un archivo .md, devuelve array de objetos
